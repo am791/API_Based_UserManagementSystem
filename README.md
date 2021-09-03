@@ -3,7 +3,7 @@
 - User Management System developed on API Based.
 
 ***Required Functionalities***
-- Develop a screen to display existing users and delete the selected user.
+- Develop a screen to display existing users and delete a current user by using email id.
 - Develop a screen to add new user.
 
 ## APIs for above requirements
