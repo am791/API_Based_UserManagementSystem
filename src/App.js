@@ -20,7 +20,7 @@ interface UserInfo {
 }
 
 const fetchRandomData = ()=>{
- return  axios.get('http://15.207.229.231:8000/machstatz/get_all_users')
+ return  axios.get('http://3.6.93.159:7883/machstatz/get_all_users')
   .then(({data})=>{
     return data;
   })
@@ -41,6 +41,7 @@ export default function App(){
   const fetchDataDynamically = () => {
    return  fetchRandomData().then((randomData)=>{
       setUserInfos(randomData);
+      console.log(JSON.stringify(randomData, null,2));
       alert("Data Re-fetched Successfully");
   });
   }
@@ -49,17 +50,20 @@ const deleteUser = e => {
   e.preventDefault()
   fetch(`http://3.6.93.159:7883/machstatz/delete_existing_user`, {
     method: 'DELETE',
-    body: JSON.stringify({'email': email2})
+    body: email2,
   })
-  .then(()=>{
+  .then((response)=>{
+    alert(response.json());
+    return fetchRandomData().then((randomData)=>{
+      setUserInfos(randomData);
+    });
+    /*
     if(email2=='') return alert("Please enter Email of the user to delete.");
     var temp = false;
     var existingUsers = userInfos;
-    var rem;
     for(let x in existingUsers){
       if(existingUsers[x]['email'] == email2){
         temp=true;
-        rem = x;
         break;
     }
     }
@@ -67,26 +71,31 @@ const deleteUser = e => {
     if(temp){
       return fetchRandomData().then((randomData)=>{
         console.log(JSON.stringify(randomData, null, 2));
-        randomData.splice(rem,1);
         setUserInfos(randomData);
         alert("User deleted successfully.");
       });
     }
     else {
       alert("Unable to delete the user or user may not exist.");
-    }
+    } */
   })
   .catch(()=>alert("There was an error"));
 }  
 
 const submit = e => {
   e.preventDefault()
-  fetch(`http://15.207.229.231:8000/machstatz/add_new_user`, {
+  fetch(`http://3.6.93.159:7883/machstatz/add_new_user`, {
     method: 'POST',
     body: JSON.stringify({ email, fist_name, last_name, pwd, username }),
   })
-  .then(()=> {
-    if(email=='' || fist_name=='' || pwd=='' || username=='')  return alert("Please fill all the mandatory fields to add a new user.");
+  .then((response)=> {
+    alert(response.json());
+    return fetchRandomData().then((randomData)=>{
+      setUserInfos(randomData);
+      
+    });
+
+    /*if(email=='' || fist_name=='' || pwd=='' || username=='')  return alert("Please fill all the mandatory fields to add a new user.");
     var temp = true;
     var existingUsers = userInfos;
     for(let x in existingUsers){
@@ -96,11 +105,11 @@ const submit = e => {
     if(temp){
     return fetchRandomData().then((randomData)=>{
       setUserInfos(randomData);
-      alert("Created the new user successfully.");
+      alert(response[0]);
     });}
     else{
-      alert("User with provided email or username is already exist. Can't add duplicates");
-    }    
+      alert(response[0]);
+    }    */
   })
   .catch(()=>alert("There was an error"));
   }
@@ -183,7 +192,7 @@ const submit = e => {
         <h3>DELETE USER</h3>
         <h4 htmlFor="email2">Email</h4>
         <input
-          type="email2"
+          
           name="email2"
           value={email2}
           placeholder="*Enter Email"
