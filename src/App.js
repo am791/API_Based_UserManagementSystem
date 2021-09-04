@@ -50,7 +50,7 @@ const deleteUser = e => {
   e.preventDefault()
   fetch(`http://3.6.93.159:7883/machstatz/delete_existing_user`, {
     method: 'DELETE',
-    body: email2,
+    body: JSON.stringify({'email': email2})
   })
   .then((response)=>{
     alert(response.json());
