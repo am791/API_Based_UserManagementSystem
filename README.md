@@ -9,13 +9,13 @@
 ## APIs for above requirements
 - Fetch All Registered users 
 
-  API: "http://15.207.229.231:8000/machstatz/get_all_users"
+  API: "http://3.6.93.159:7883/machstatz/get_all_users"
   
   Use this API to fetch all the registered user.
 
 - Add New User
  
-  API: "http://15.207.229.231:8000/machstatz/add_new_user"
+  API: "http://3.6.93.159:7883/machstatz/add_new_user"
   
   Use this to create new User
   
@@ -62,7 +62,7 @@
 
 - Delete Existing User
 
-  API: "http://15.207.229.231:8000/machstatz/delete_existing_user"
+  API: "http://3.6.93.159:7883/machstatz/delete_existing_user"
   
   Use this API to delete the existing user
   
@@ -97,8 +97,8 @@
       }
 
 
-### How to run the project:
-- Clone the project.
+### How to run the project on Local:
+- Clone the project - master branch.
 - Open the Command prompt(cmd) and set the directory to the cloned project. Run the command: 
   ``` npm install ```
   The above command will download all the node modules required for the project to run.
@@ -106,25 +106,11 @@
   ``` npm start ```
   The above command will run the software on a localhost.
 - Use the provided localhost link in any browser.
+- NOTE: gh-pages branch is included to deploy it on gh-pages
 
-## Scrrenshots of the Project
+## Video Demo of the Project-Assignmemnt
 
-> Fetched Data 
+> Demo Video
 
-![Enter Game]()
 
-> Add New User: Success
-
-![Painter]()
-
-> Delete Current User: Success
-
-![Guesser]()
-
-> Add New User - Failure
-
-![Correct Guess]()
-
-> Delete Current USer: Failure
-
-![New Painter]()
+> [![Watch the video](https://img.youtube.com/vi/b4o7LtrRspU/maxresdefault.jpg)](https://youtu.be/b4o7LtrRspU)
